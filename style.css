@@ -1,0 +1,134 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000000; 
+    color: #2c0077;
+}
+
+header {
+    background-color: #25066e;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.sandwich-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    background-color: #25066e;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.sandwich-menu li {
+    margin: 10px 0;
+}
+
+.sandwich-icon {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+section {
+    padding: 40px;
+    margin: 40px 0;
+    color: #fff;
+    background-color: #202020;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+    margin-top: 0;
+}
+
+#about, #projects, #contact {
+    margin: 0 auto;
+}
+
+#about img {
+    display: block;
+    margin: 0 auto 20px auto;
+    left: auto;
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+    }
+
+    .sandwich-icon {
+        display: block;
+    }
+
+    .sandwich-menu {
+        display: flex;
+    }
+
+    section {
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    #about img {
+        width: 100%;
+        height: auto;
+    }
+
+    footer {
+        position: static;
+        padding: 20px 0;
+    }
+}
