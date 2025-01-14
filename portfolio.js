@@ -3,10 +3,12 @@ const navMenu = document.querySelector('.nav-menu');
 const sandwichMenu = document.querySelector('.sandwich-menu');
 
 sandwichIcon.addEventListener('click', () => {
-    if (sandwichMenu.style.display === 'block') {
-        sandwichMenu.style.display = 'none';
+    if (sandwichMenu.style.maxHeight && sandwichMenu.style.maxHeight !== "0px") {
+        // Close the menu
+        sandwichMenu.style.maxHeight = "0px";
     } else {
-        sandwichMenu.style.display = 'block';
+        // Open the menu
+        sandwichMenu.style.maxHeight = sandwichMenu.scrollHeight + "px";
     }
 });
 
