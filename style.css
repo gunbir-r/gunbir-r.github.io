@@ -242,6 +242,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+    html {
+        overflow-x: hidden;
+    }
+
     nav ul {
         display: none;
     }
