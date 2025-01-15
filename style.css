@@ -3,15 +3,31 @@ html {
 }
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: #000000; 
+    color: #2c0077;
+
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+body, html {
     margin: 0;
     padding: 0;
-    background-color: #1b1b1b; 
-    color: #2c0077;
+    width: 100%;
+    height: 100%;
+    background-repeat: repeat; 
 }
 
 header {
-    background-color: #25066e;
-    color: #fff;
+    background-color: #000000;
+    opacity: 0.9;
+    color: #ffffff;
     padding: 20px 0;
     text-align: center;
     position: fixed;
@@ -21,7 +37,7 @@ header {
     z-index: 100;
 }
 
-header, .sandwich-icon {
+header, .hamburger-icon {
     user-select: none; /* Disables text selection */
     -webkit-user-select: none; /* For Safari */
     -ms-user-select: none; /* For older versions of Internet Explorer */
@@ -51,7 +67,7 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-.sandwich-menu {
+.hamburger-menu {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -67,11 +83,11 @@ nav ul li a:hover {
     transition: max-height 0.5s ease;
 }
 
-.sandwich-menu li {
+.hamburger-menu li {
     margin: 20px 10px;
 }
 
-.sandwich-icon {
+.hamburger-icon {
     display: none;
     cursor: pointer;
     font-size: 24px;
@@ -84,6 +100,7 @@ section {
     display: flex;
     align-items: center;
     padding: 40px;
+    opacity: 0.9;
     margin: 40px 0; 
     color: #fff;
     background-color: #202020;
@@ -99,6 +116,8 @@ section div {
     flex: 1 1 100%;
     text-align: right;
 }
+
+
 
 @media (min-width: 768px) {
     section img {
@@ -118,7 +137,22 @@ section:hover {
 }
 
 section h2 {
-    margin-top: 0;
+    font-size: 30px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+.project-list {
+    font-size: 20px;
+    display: block;
+    margin-left: 30px;
+}
+
+section p {
+    font-size: 18px;
+    text-align: left;
 }
 
 #about, #projects, #contact {
@@ -129,9 +163,27 @@ section h2 {
     margin-top: 100px;
 }
 
+#projects, #contact {
+    margin-top: 20px;
+}
+
+#projects section {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+#projects section img, #projects section video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    margin-right: 20px;
+    flex: 1 1 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 #profile {
     width: 100%;
-
     max-width: 500px;
     height: auto;
     object-fit: cover;
@@ -147,6 +199,12 @@ section h2 {
     width: 100%;
 }
 
+#projects i {
+    font-size: 55px;
+}
+
+
+
 footer {
     text-align: center;
     padding: 10px 0;
@@ -157,21 +215,46 @@ footer {
     bottom: 0;
 }
 
+.social-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px; /* Adjust padding for size */
+    background-color: #25066e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px; /* Rounded corners */
+    font-family: sans-serif; /* Use a clean font */
+    font-weight: 500; /* Slightly bolder text */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    margin: 5px;
+}
+
+.social-button:hover {
+    background-color: #381396; /* Darker on hover */
+    transform: scale(1.05); /* Slight scale on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25); /* More pronounced shadow */
+}
+.social-button i {
+  margin-right: 8px; /* Space between icon and text */
+}
+
 @media (max-width: 768px) {
     nav ul {
         display: none;
     }
 
-    .sandwich-icon {
+    .hamburger-icon {
         display: block;
     }
 
-    .sandwich-menu {
+    .hamburger-menu {
         display: flex;
     }
 
     section {
-        padding: 20px;
+        padding: 40px;
         margin: 20px 0;
         width: 100%;
     }
@@ -185,8 +268,17 @@ footer {
         height: auto;
     }
 
+    #projects section img, #projects section video {
+        width: 60%;
+        height: auto;
+        max-width: 70%;
+    }
+  
+    
+
     footer {
         position: static;
         padding: 20px 0;
     }
+
 }

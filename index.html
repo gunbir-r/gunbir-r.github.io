@@ -7,21 +7,23 @@
     <link rel="stylesheet" href="style.css">
     <script src="portfolio.js" defer></script>
     <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />   
+    <link rel="icon" href="favicon.png" type="image/png">
 </head>
 <body>
+
     <header>
         <h1>Gunbir Reehal</h1>
         <nav>
-            <div class="sandwich-icon">&#9776;</div>
+            <div class="hamburger-icon">&#9776;</div>
             <ul class="nav-menu">
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact">Links</a></li>
             </ul>
-            <ul class="sandwich-menu">
+            <ul class="hamburger-menu">
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact">Links</a></li>
             </ul>
         </nav>
     </header>
@@ -30,27 +32,20 @@
         <figure>
             <img src="IMG_2390.jpeg" id="profile" alt="Image of Gunbir Reehal"/>
         </figure>
-        <p>I am a lifelong learner with a growth mindset, constantly striving to expand my knowledge and skills every day. 
-            Growing up in an era of rapid technological advancements, I became fascinated by how the world around me worked. 
-            This curiosity led me to the world of programming, where I took my first steps by learning Python in the tenth grade. 
-            From that moment, I knew I wanted to pursue a career in software engineering—not just for my love of coding, but to 
-            make a meaningful difference in people’s lives.
-            <br><br>
-            Helping others has always been my driving force, and I aim to use 
-            technology to create solutions that positively impact someone’s day. As a Computer Science student at the University of 
-            Toronto, I’ve developed a strong foundation in both theoretical and practical concepts. I’ve honed my skills across a 
-            wide array of tools and technologies, while constantly challenging myself to learn more.
-            <br><br>
-            Beyond my formal education, I’ve independently explored new programming languages and platforms. Recently, I’ve been diving 
-            into Swift for iOS development, as well as JavaScript, HTML, and CSS for web development—skills I used to design and build 
-            this very website!
-            <br><br>
-            I am passionate about growing in dynamic environments, collaborating with others, and continuously learning to push boundaries and 
-            innovate. My ultimate goal is to create meaningful, user-centric solutions that improve lives and make a positive impact on the world.
+        <p>I've always been fascinated by how things work, and growing up surrounded by technology naturally drew me to 
+            the world of programming. Starting with Python in tenth grade, I discovered a passion for building software that
+             can make a real difference. Now, as a Computer Science student at the University of Toronto, I'm building a 
+             strong foundation in core programming concepts through coursework in languages like Java, Python, and C/C++. 
+             Beyond my studies, I'm also actively exploring new areas like iOS development with Swift and refining my web 
+             development toolkit with JavaScript, HTML, and CSS (you're looking at the result!). I'm a firm believer in the 
+             power of collaboration and am always excited to learn and grow within dynamic teams.
+
+
         </p>
         <figure id="languages">
             <i class="devicon-python-plain"></i>
-            <i class="devicon-java-plain"></i>
+            <i class="devicon-java-plain-wordmark"></i>     
+            <i class="devicon-c-plain"></i>
             <i class="devicon-cplusplus-plain"></i>
             <i class="devicon-javascript-plain"></i>
             <i class="devicon-html5-plain-wordmark"></i>
@@ -58,16 +53,89 @@
             <i class="devicon-swift-plain"></i>
             <i class="devicon-git-plain"></i>
             <i class="devicon-linux-plain"></i>
-          
         </figure>
 
     </section>
     <section id="projects">
         <h2>Projects</h2>
-        <p></p>
+        <div class="project-list">
+            <section class="portfolio-website">
+                <h3>Portfolio Website</h3>
+                <p>
+                    This portfolio website was designed with a focus on creating a sleek, modern aesthetic, drawing 
+                    inspiration from glass-like design principles. I utilized HTML and CSS for the core structure and 
+                    styling, and incorporated particles.js to create a visually engaging and dynamic background. To 
+                    ensure optimal user experience across different screen sizes, I implemented a responsive navigation 
+                    menu (often referred to as a "hamburger menu") using JavaScript, providing easy access to site content 
+                    on smaller screens.
+                </p>
+                <a href="https://github.com/gunbir-r/gunbir-reehal-porfolio" class="social-button github" target="_blank" rel="noopener noreferrer"> 
+                    <i class="devicon-github-original"></i>GitHub
+                </a>
+                <i class="devicon-javascript-plain"></i>
+                <i class="devicon-html5-plain-wordmark"></i>
+                <i class="devicon-css3-plain-wordmark"></i>
+            </section>
+            <section class="burger-restaurant">
+                <h3>Burger Restaurant Simulator</h3>
+                <img src="https://private-user-images.githubusercontent.com/122248426/368395987-6526b422-245b-41f9-9dea-aefb849e82bc.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzY5MDM5MTksIm5iZiI6MTczNjkwMzYxOSwicGF0aCI6Ii8xMjIyNDg0MjYvMzY4Mzk1OTg3LTY1MjZiNDIyLTI0NWItNDFmOS05ZGVhLWFlZmI4NDllODJiYy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwMTE1JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDExNVQwMTEzMzlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT02NjRiMmQwOWQxMzFlMDFjNjhjYTQ3NTY2MmNjZGEwMGRhMzVkNzk3MmJhZThkNDA0ZWFhZTc0ZjFlOTEyZDkxJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.fo1y8gdHbAEJ1NQXLcWozgMiKFN1O2JFqfhcQ79jSyc"
+                alt="Burger Restaurant Simulator game image"/>
+                <p>
+                    This project involved the design and development of a JavaFX-based game in collaboration with a five-person 
+                    team, with a one-month timeline. From initial concept to final implementation, we adhered to Agile development methodologies, participating 
+                    in weekly sprints for planning, development, and iteration. Notably, we prioritized accessibility, working with a 
+                    consultant to ensure the game’s features were inclusive and usable for individuals with special needs. We leveraged 
+                    software design principles, design patterns, user stories, UML diagrams, and Git to facilitate effective collaboration 
+                    and project management. The project concluded with a presentation to the professor, head teaching assistant, and 
+                    accessibility consultant, highlighting the game’s key features and accessibility considerations.
+                </p> 
+                <a href="https://github.com/gunbir-r/BurgerFrenzySimulator" class="social-button github" target="_blank" rel="noopener noreferrer"> 
+                    <i class="devicon-github-original"></i>GitHub
+                </a>
+                <i class="devicon-java-plain-wordmark"></i>
+            </section>
+            <section class="c-terminal-game">
+                <h3>Multiplayer Text-Based Battle Game</h3>
+                <img src="multiplayer-game-img.png" alt="Multiplayer Text-Based Battle Game image"/>
+                <p>
+                    In a team of three, I collaborated to develop a C-based server for a text-based battle game. This 
+                    involved implementing Unix sockets to manage player logins, seamlessly match players, and handle 
+                    turn-based combat without disrupting existing matches. We also created Makefiles and configured the 
+                    server to operate in noncanonical mode for efficient input handling. Going beyond the project's core 
+                    requirements, we implemented custom enhancements to further improve functionality and gameplay.
+                </p>
+                <i class="devicon-c-plain"></i>
+                <i class="devicon-linux-plain"></i>
+            </section>
+            <section class="led-assembly">
+                <h3>LED Sokoban Game</h3>
+                <video src="sokoban-video.mp4" controls></video>
+                <p>
+                    This project involved developing a Sokoban-based puzzle game in RISC-V assembly, presenting unique challenges in terms 
+                    of low-level programming and simulated hardware interaction. I integrated D-Pad and LED input/output, simulating the 
+                    hardware interface to create a user-friendly control scheme within the simulator environment. Implementing multiplayer 
+                    functionality required careful management of dynamic memory and efficient input handling within this simulated context. 
+                    To further enhance the game, I implemented a pseudo-random number generator using the linear congruence method. Finally, 
+                    I created comprehensive user documentation, including setup instructions and a gameplay guide, to facilitate easy setup 
+                    and gameplay within the simulated environment.
+                </p>
+        </div>
     </section>
     <section id="contact">
-        <h2>Contact Info</h2>
+        <h2>Links</h2>
+            <a href="https://www.linkedin.com/in/gunbir-reehal/" class="social-button linkedin" target="_blank" rel="noopener noreferrer">    
+                <i class="devicon-linkedin-plain"></i>LinkedIn
+            </a>
+        
+            <a href="https://github.com/gunbir-r" class="social-button github" target="_blank" rel="noopener noreferrer"> 
+                <i class="devicon-github-original"></i> GitHub
+            </a>
+          
     </section>
+    <!-- particles.js container -->
+      <div id="particles-js"></div> 
+    <!-- particles.js lib - https://github.com/VincentGarreau/particles.js --> 
+     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 </body>
 </html>
