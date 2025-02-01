@@ -183,6 +183,10 @@ section p {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+#projects ul {
+    font-size: 18px;
+}
+
 #profile {
     width: 100%;
     max-width: 500px;
@@ -271,6 +275,19 @@ footer {
     #about img {
         width: 75%;
         height: auto;
+    }
+
+    section h3, section h4 {
+        width: 100%;
+        text-align: left;
+        padding: 0 20px; /* Add padding to the sides */
+    }
+
+    .project-list ul {
+        padding-left: 20px;
+        margin-right: 20px;
+        overflow-x: hidden;
+        padding: 0 20px; /* Add padding to the sides */
     }
 
     #projects section img, #projects section video {
