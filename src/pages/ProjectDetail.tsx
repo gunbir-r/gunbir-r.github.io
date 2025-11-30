@@ -21,7 +21,7 @@ const projectDetails: Record<string, any> = {
     hero: '📈',
     description: 'An innovative Power BI dashboard developed during the 2025 OPS Hackathon to analyze and address cost-of-living challenges using Microsoft Fabric.',
     features: ['Real-time Data Analysis', 'Interactive Visualizations', 'Data Comparison Tools', 'User-Friendly Interface'],
-    tech: ['Microsoft Fabric', 'Power BI', 'AI Agents'],
+    tech: ['Microsoft Fabric', 'Power BI', 'Python', 'Jupyter Notebooks', 'Apache Spark'],
     impact: 'Developed a data-driven solution judged by OPS and Microsoft experts, enhancing skills in data science and visualization.',
     media: "https://www.youtube.com/embed/lVERy2Mm60w?si=lU-UJFm1mPB2n5hp",
     githubUrl: null
