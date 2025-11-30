@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from '@emotion/react';
 import { AnimatePresence } from 'framer-motion';
 import { usePortfolioTheme, PortfolioThemeProvider } from './components/theme/ThemeContext';
@@ -12,6 +12,13 @@ import Contact from './pages/Contact';
 
 const AppInner: React.FC = () => {
   const { theme } = usePortfolioTheme();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+    }
+  }, [location.pathname]);
   return (
     <ThemeProvider theme={theme}>
       <Layout>
