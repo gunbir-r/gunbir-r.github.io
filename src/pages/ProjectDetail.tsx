@@ -16,8 +16,8 @@ const projectDetails: Record<string, any> = {
     githubUrl: null
   },
   'ops-hackathon': {
-    title: 'Cost-of-Living Insights Dashboard',
-    tagline: 'Data Science using Microsoft Fabric',
+    title: 'Cost-of-Living Insights Hub',
+    tagline: 'Data Analysis using Microsoft Fabric',
     hero: '📈',
     description: 'An innovative Power BI dashboard developed during the 2025 OPS Hackathon to analyze and address cost-of-living challenges using Microsoft Fabric.',
     features: ['Real-time Data Analysis', 'Interactive Visualizations', 'Data Comparison Tools', 'User-Friendly Interface'],

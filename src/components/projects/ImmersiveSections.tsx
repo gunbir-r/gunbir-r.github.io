@@ -16,8 +16,8 @@ const projectData = [
   },
   {
     id: 'ops-hackathon',
-    title: 'Cost-of-Living Insights Dashboard',
-    tagline: 'Hackathon Participation',
+    title: 'Cost-of-Living Insights Hub',
+    tagline: 'Cost-of-Living Data Analysis',
     blurb: 'Participated in the 2025 OPS Hackathon, developing innovative data-based solution in Microsoft Fabric to help analyze and address cost-of-living challenges. Judged by a team of OPS and Microsoft experts.',
     color: '#06b6d4',
     icon: '📈',
