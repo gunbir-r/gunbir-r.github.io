@@ -1,224 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gunbir Reehal</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="portfolio.js" defer></script>
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />   
-    <link rel="icon" href="favicon.png" type="image/png">
-</head>
-<body>
-
-    <header>
-        <h1>Gunbir Reehal</h1>
-        <nav>
-            <div class="hamburger-icon">&#9776;</div>
-            <ul class="nav-menu">
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Links</a></li>
-            </ul>
-            <ul class="hamburger-menu">
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Links</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section id="about">
-        <h2>About Me</h2>
-        <figure>
-            <img src="IMG_2390.jpeg" id="profile" alt="Image of Gunbir Reehal"/>
-        </figure>
-        <p>I've always been fascinated by how things work, and growing up surrounded by technology naturally drew me to 
-            the world of programming. Starting with Python in tenth grade, I discovered a passion for building software that
-             can make a real difference. Now, as a Computer Science student at the University of Toronto, I'm building a 
-             strong foundation in core programming concepts through coursework in languages like Java, Python, and C/C++. 
-             Beyond my studies, I'm also actively exploring new areas like iOS development with Swift and refining my web 
-             development toolkit with JavaScript, HTML, and CSS (you're looking at the result!). I'm a firm believer in the 
-             power of collaboration and am always excited to learn and grow within dynamic teams.
-
-
-        </p>
-        <figure id="languages">
-            <i class="devicon-python-plain"></i>
-            <i class="devicon-java-plain-wordmark"></i>     
-            <i class="devicon-c-plain"></i>
-            <i class="devicon-cplusplus-plain"></i>
-            <i class="devicon-csharp-plain"></i>
-            <i class="devicon-javascript-plain"></i>
-            <i class="devicon-typescript-plain"></i>
-            <i class="devicon-react-original"></i>
-            <i class="devicon-html5-plain-wordmark"></i>
-            <i class="devicon-css3-plain-wordmark"></i>
-            <i class="devicon-swift-plain"></i>
-        </figure>
-
-    </section>
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-list">
-            <section class="financial-risk-monitor">
-                <h3>Chronos Edge: A Portfolio Visualization &amp; Financial Risk Monitoring Platform </h3>
-                <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/DSgS60BN1jo?si=ncDMAM0VxwexR_40" 
-                    title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <p>
-                    This project is a portfolio visualization and financial risk monitoring platform designed for informed investors
-                    who actively manage their own portfolios. Designed in a team of six, the platform bridges the gap between professional financial
-                    tools and manual spreadsheets by offering intuitive, data-driven insights into portfolio risks
-                    and market sentiment. The platform leverages data visualization, and optimization
-                    techniques to provide actionable investment strategies.
-                </p>
-                <h4>Features</h4>
-                <ul>
-                    <li><strong>Live Portfolio &amp; Market Visualization</strong> – Provides up-to-date market details with live portfolio value and
-                    diversification scores</li>
-                    <li><strong>Efficient Frontier Optimization</strong> – Helps users visualize the optimal portfolio allocation
-                        for balancing risk and return.</li>
-                    <li><strong>Sentiment Analysis</strong> – Monitors market sentiment in real time
-                        using AlphaVantage API analysis of news sentiment.</li>
-                </ul>
-                <h4>Motivation</h4>
-                <p>
-                    Many investors understand financial concepts but lack user-friendly tools to apply them effectively.
-                    Existing solutions are either too complex or too basic, leaving a gap in the market. This platform
-                    is designed to empower self-directed investors with intuitive yet powerful risk management features,
-                    helping them optimize their portfolios with confidence.
-                </p>
-                <p>
-                   We hope to host this project on a cloud platform soon to allow users to access it and test it out for themselves. Stay tuned!
-                </p>
-                <div class="project-completion">
-                    <div class="tech-stack">
-                        <i class="devicon-react-original"></i>
-                        <i class="devicon-typescript-plain"></i>
-                        <i class="devicon-html5-plain-wordmark"></i>
-                        <i class="devicon-css3-plain-wordmark"></i>
-                        <i class="devicon-javascript-plain"></i>
-                    </div>
-                </div>
-            </section>
-            <section class="ai-study-helper">
-                <h3>All-In-One AI Study Helper <em>(In Development)</em></h3>
-                <img src="ai-helper-welcome-page.png"
-                alt="Welcome Page of AI Study Helper app on iPhone 16 Pro Simulator"/>
-                <p>
-                    The All-In-One AI Study Helper is an all-in-one AI-powered study companion designed to streamline the learning process 
-                    by integrating multiple study tools into a single platform. Built using Swift and SwiftUI for a seamless and modern iOS 
-                    experience, the app is designed for students who need efficient and customized learning support. It leverages Meta’s 
-                    open-source Llama models to generate high-quality quizzes, short-answer prompts, and math problems based on users’ course 
-                    notes.
-                </p>
-                <h4>Features</h4>
-                <ul>
-                    <li><strong>Custom Quiz Generation</strong> – Automatically creates multiple-choice and short-answer quizzes from uploaded course notes 
-                        (PDFs/Images).</li>
-                    <li><strong>AI-Powered Problem Solving</strong> – Generates math problems and solutions tailored to coursework.</li>
-                    <li><strong>Streamlined User Experience</strong> – A sleek and modern UI with a dark mode-friendly deep blue aesthetic.</li>
-                    <li><strong>Intuitive Navigation</strong> – A bottom navigation bar for quick access to Multiple-Choice, Short Answers, Math Problems, 
-                        Cue Cards, and Settings.</li>
-                    <li><strong>Progress Tracking</strong> – Displays question counts, correctness feedback, and performance summaries upon quiz completion.</li>
-                    <li><strong>Interactive Learning</strong> – Engaging UI elements, such as color-changing buttons for quiz responses and structured 
-                        feedback messages based on performance.</li>
-                </ul>
-                <h4>Motivation</h4>
-                <p>As a computer science student, I’ve always struggled to find a single app that effectively supports both theoretical and 
-                    mathematical learning. Balancing CS concepts with math-heavy coursework is challenging, and existing study tools often 
-                    focus on only one aspect. To solve this, I decided to build an all-in-one AI-powered learning assistant that adapts to 
-                    various study needs, making learning more seamless and efficient.
-                </p>
-                <div>
-                    <i class="devicon-swift-plain"></i>
-                </div>
-            </section>
-            <section class="portfolio-website">
-                <h3>Portfolio Website</h3>
-                <p>
-                    This portfolio website was designed with a focus on creating a sleek, modern aesthetic, drawing 
-                    inspiration from glass-like design principles. I utilized HTML and CSS for the core structure and 
-                    styling, and incorporated particles.js to create a visually engaging and dynamic background. To 
-                    ensure optimal user experience across different screen sizes, I implemented a responsive navigation 
-                    menu (often referred to as a "hamburger menu") using JavaScript, providing easy access to site content 
-                    on smaller screens.
-                </p>
-                <a href="https://github.com/gunbir-r/gunbir-reehal-porfolio" class="social-button github" target="_blank" rel="noopener noreferrer"> 
-                    <i class="devicon-github-original"></i>GitHub
-                </a>
-                <div>
-                    <i class="devicon-javascript-plain"></i>
-                    <i class="devicon-html5-plain-wordmark"></i>
-                    <i class="devicon-css3-plain-wordmark"></i>
-                </div>
-            </section>
-            <section class="burger-restaurant">
-                <h3>Burger Restaurant Simulator</h3>
-                <img src="burger-img.png"
-                alt="Burger Restaurant Simulator game image"/>
-                <p>
-                    This project involved the design and development of a JavaFX-based game in collaboration with a five-person 
-                    team, with a one-month timeline. From initial concept to final implementation, we adhered to Agile development methodologies, participating 
-                    in weekly sprints for planning, development, and iteration. Notably, we prioritized accessibility, working with a 
-                    consultant to ensure the game’s features were inclusive and usable for individuals with special needs. We leveraged 
-                    software design principles, design patterns, user stories, UML diagrams, and Git to facilitate effective collaboration 
-                    and project management. The project concluded with a presentation to the professor, head teaching assistant, and 
-                    accessibility consultant, highlighting the game’s key features and accessibility considerations.
-                </p> 
-                <a href="https://github.com/gunbir-r/BurgerFrenzySimulator" class="social-button github" target="_blank" rel="noopener noreferrer"> 
-                    <i class="devicon-github-original"></i>GitHub
-                </a>
-                <div>
-                    <i class="devicon-java-plain-wordmark"></i>
-                </div>
-            </section>
-            <section class="c-terminal-game">
-                <h3>Multiplayer Text-Based Battle Game</h3>
-                <img src="multiplayer-game-img.png" alt="Multiplayer Text-Based Battle Game image"/>
-                <p>
-                    In a team of three, I collaborated to develop a C-based server for a text-based battle game. This 
-                    involved implementing Unix sockets to manage player logins, seamlessly match players, and handle 
-                    turn-based combat without disrupting existing matches. We also created Makefiles and configured the 
-                    server to operate in noncanonical mode for efficient input handling. Going beyond the project's core 
-                    requirements, we implemented custom enhancements to further improve functionality and gameplay.
-                </p>
-                <div>
-                    <i class="devicon-c-plain"></i>
-                    <i class="devicon-linux-plain"></i>
-                </div>
-            </section>
-            <section class="led-assembly">
-                <h3>LED Sokoban Game</h3>
-                <video src="sokoban-video.mp4" controls></video>
-                <p>
-                    This project involved developing a Sokoban-based puzzle game in RISC-V assembly, presenting unique challenges in terms 
-                    of low-level programming and simulated hardware interaction. I integrated D-Pad and LED input/output, simulating the 
-                    hardware interface to create a user-friendly control scheme within the simulator environment. Implementing multiplayer 
-                    functionality required careful management of dynamic memory and efficient input handling within this simulated context. 
-                    To further enhance the game, I implemented a pseudo-random number generator using the linear congruence method. Finally, 
-                    I created comprehensive user documentation, including setup instructions and a gameplay guide, to facilitate easy setup 
-                    and gameplay within the simulated environment.
-                </p>
-        </div>
-    </section>
-    <section id="contact">
-        <h2>Links</h2>
-            <a href="https://www.linkedin.com/in/gunbir-reehal/" class="social-button linkedin" target="_blank" rel="noopener noreferrer">    
-                <i class="devicon-linkedin-plain"></i>LinkedIn
-            </a>
-        
-            <a href="https://github.com/gunbir-r" class="social-button github" target="_blank" rel="noopener noreferrer"> 
-                <i class="devicon-github-original"></i> GitHub
-            </a>
-          
-    </section>
-    <!-- particles.js container -->
-      <div id="particles-js"></div> 
-    <!-- particles.js lib - https://github.com/VincentGarreau/particles.js --> 
-     <script src="particles.js-api/particles.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gunbir Reehal | Portfolio</title>
+    <meta name="description" content="Gunbir Reehal's interactive portfolio using React, TypeScript, gradients, and immersive scrolling." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-gradient: 
+          radial-gradient(ellipse at 20% 50%, rgba(0, 245, 255, 0.35) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 80%, rgba(255, 0, 128, 0.32) 0%, transparent 50%),
+          radial-gradient(ellipse at 40% 0%, rgba(191, 64, 191, 0.28) 0%, transparent 60%),
+          radial-gradient(ellipse at 100% 20%, rgba(127, 0, 255, 0.22) 0%, transparent 50%),
+          linear-gradient(135deg, #0a0e27 0%, #1a0a3e 20%, #2d1b5e 40%, #1a0f3e 60%, #0f0a2e 100%);
+      }
+      body { 
+        margin: 0; 
+        font-family: 'Inter', system-ui, sans-serif; 
+        background: var(--bg-gradient);
+        background-attachment: fixed;
+        color: #f0f9ff;
+      }
+      #root { 
+        isolation: isolate; 
+      }
+      .no-js { 
+        padding: 2rem; 
+        text-align: center; 
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div class="no-js">This site is highly interactive and requires JavaScript enabled.</div>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
