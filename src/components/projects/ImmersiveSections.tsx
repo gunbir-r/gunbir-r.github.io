@@ -88,7 +88,8 @@ const ImmersiveSections: React.FC = () => {
               placeItems: 'center',
               padding: '4rem 1.5rem',
               position: 'relative',
-              overflow: 'hidden'
+              overflow: 'hidden',
+              boxSizing: 'border-box'
             }}
           >
             {/* Animated gradient accent blob per project */}
@@ -116,15 +117,17 @@ const ImmersiveSections: React.FC = () => {
             <motion.div
               variants={itemVariants}
               style={{
-                width: 'min(960px, 100%)',
+                width: 'min(960px, calc(100% - 2rem))',
+                maxWidth: '100%',
                 background: theme.gradients.panel,
                 border: `2px solid ${theme.colors.border}`,
                 borderRadius: '40px',
-                padding: 'clamp(2rem, 5vw, 3.5rem)',
+                padding: 'clamp(1.5rem, 5vw, 3.5rem)',
                 boxShadow: '0 20px 70px -15px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1)',
                 backdropFilter: 'blur(20px) saturate(180%)',
                 position: 'relative',
-                zIndex: 1
+                zIndex: 1,
+                boxSizing: 'border-box'
               }}
               initial={{ opacity: 0, scale: 0.88 }}
               whileInView={{ opacity: 1, scale: 1 }}

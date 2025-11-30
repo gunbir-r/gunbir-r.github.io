@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolioTheme } from '../components/theme/ThemeContext';
 import InteractivePolaroid from '../components/ui/InteractivePolaroid';
 
 const Home: React.FC = () => {
   const { theme } = usePortfolioTheme();
+  const [isMobile, setIsMobile] = useState(false);
+  const [mainPhoto, setMainPhoto] = useState('/gunbir-photo.jpeg');
+  const [secondaryPhotos, setSecondaryPhotos] = useState([
+    '/times-square.jpeg',
+    '/cn-tower.jpeg'
+  ]);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handlePhotoSwap = (clickedPhoto: string) => {
+    if (!isMobile) return;
+    const currentMain = mainPhoto;
+    setMainPhoto(clickedPhoto);
+    setSecondaryPhotos(prev => prev.map(p => p === clickedPhoto ? currentMain : p));
+  };
   
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -92,7 +112,7 @@ const Home: React.FC = () => {
       <div style={{
         maxWidth: 1400,
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
+        gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
         gap: '2rem',
         alignItems: 'center',
         position: 'relative',
@@ -203,10 +223,14 @@ const Home: React.FC = () => {
           }}
         >
           {/* Main Polaroid */}
-          <motion.div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <motion.div 
+            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+            layout
+            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+          >
             <InteractivePolaroid 
-              src="/gunbir-photo.jpeg" 
-              alt="Gunbir Reehal - colorful personality" 
+              src={mainPhoto} 
+              alt="Main photo" 
               rotation={-12}
             />
           </motion.div>
@@ -219,21 +243,30 @@ const Home: React.FC = () => {
               justifyContent: 'center',
               width: '100%'
             }}
+            layout
           >
-            <div style={{ transform: 'scale(0.85)' }}>
-              <InteractivePolaroid 
-                src="/times-square.jpeg" 
-                alt="Times Square" 
-                rotation={8}
-              />
-            </div>
-            <div style={{ transform: 'scale(0.85)' }}>
-              <InteractivePolaroid 
-                src="/cn-tower.jpeg" 
-                alt="CN Tower" 
-                rotation={-6}
-              />
-            </div>
+            {secondaryPhotos.map((photo, idx) => (
+              <motion.div 
+                key={photo}
+                style={{ 
+                  transform: isMobile ? 'scale(0.7)' : 'scale(0.85)',
+                  cursor: isMobile ? 'pointer' : 'grab'
+                }}
+                onClick={() => handlePhotoSwap(photo)}
+                whileTap={isMobile ? { scale: 0.65 } : {}}
+                layout
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                role={isMobile ? 'button' : undefined}
+                aria-label={isMobile ? `Tap to swap with main photo: ${idx === 0 ? "Times Square" : "CN Tower"}` : undefined}
+                tabIndex={isMobile ? 0 : undefined}
+              >
+                <InteractivePolaroid 
+                  src={photo} 
+                  alt={idx === 0 ? "Times Square - tap to swap" : "CN Tower - tap to swap"} 
+                  rotation={idx === 0 ? 8 : -6}
+                />
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
       </div>
