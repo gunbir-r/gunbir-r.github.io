@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      // GitHub Pages SPA redirect
+      var pathSegments = window.location.pathname.split('/').filter(Boolean);
+      var path = '/' + pathSegments.join('/');
+      
+      // Store the original path for the app to handle
+      sessionStorage.redirect = path;
+      
+      // Redirect to index.html
+      window.location.href = '/index.html';
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
