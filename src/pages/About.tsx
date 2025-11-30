@@ -6,10 +6,10 @@ const About: React.FC = () => {
   const { theme } = usePortfolioTheme();
 
   const traits = [
-    { emoji: '🧠', title: 'Curiosity-Driven', desc: 'Always exploring new tech and paradigms to solve problems creatively.' },
-    { emoji: '🤝', title: 'Collaborative Builder', desc: 'Thrive in dynamic teams, bringing ideas together to ship impact.' },
-    { emoji: '🚀', title: 'Exploring New Tech', desc: 'From Swift to React, Python to TypeScript—lifelong learner.' },
-    { emoji: '❤️', title: 'Human-Centered', desc: 'Every design choice puts the user experience first.' }
+    { emoji: '🧠', title: 'Curiosity-Driven', desc: 'Always working to find ways to creatively solve problems.' },
+    { emoji: '🤝', title: 'Collaborative Builder', desc: 'Thrive in dynamic teams, bringing ideas together to create impactful solutions.' },
+    { emoji: '🚀', title: 'Exploring New Tech', desc: 'From Swift to React, Python to TypeScript, I am always excited to learn new things!' },
+    { emoji: '❤️', title: 'Human-Centered', desc: 'Every design choice that I make puts the user experience first.' }
   ];
 
   const containerVariants = {
