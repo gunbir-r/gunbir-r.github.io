@@ -16,14 +16,15 @@ const projectDetails: Record<string, any> = {
     githubUrl: null
   },
   'ops-hackathon': {
-    title: 'Cost-of-Living Insights Hub',
+    title: 'Cost-of-Living Insight Dashboard',
     tagline: 'Data Analysis using Microsoft Fabric',
     hero: '📈',
-    description: 'An innovative Power BI dashboard developed during the 2025 OPS Hackathon to analyze and address cost-of-living challenges using Microsoft Fabric.',
+    description: 'An innovative Power BI dashboard developed during the 2025 OPS Hackathon to analyze and address cost-of-living challenges using Microsoft Fabric. Used Jupyter Notebooks and Apache Spark for data processing and Power BI for data visualization.',
     features: ['Real-time Data Analysis', 'Interactive Visualizations', 'Data Comparison Tools', 'User-Friendly Interface'],
     tech: ['Microsoft Fabric', 'Power BI', 'Python', 'Jupyter Notebooks', 'Apache Spark'],
-    impact: 'Developed a data-driven solution judged by OPS and Microsoft experts, enhancing skills in data science and visualization.',
+    impact: 'Developed a data-driven solution judged by OPS and Microsoft experts, achieving third place in the Data Innovation category. Enhanced skills in data processing and visualization.',
     media: "https://www.youtube.com/embed/lVERy2Mm60w?si=lU-UJFm1mPB2n5hp",
+    certificate: '/ops-hackathon-certificate.jpeg',
     githubUrl: null
   },
   'burger-frenzy': {
@@ -342,6 +343,41 @@ const ProjectDetail: React.FC = () => {
           💡 {project.impact}
         </p>
       </motion.div>
+
+      {/* Certificate Section */}
+      {project.certificate && (
+        <motion.div
+          variants={itemVariants}
+          style={{
+            marginTop: '2rem',
+            background: `linear-gradient(135deg, rgba(234, 179, 8, 0.12), rgba(251, 191, 36, 0.08))`,
+            border: `2px solid rgba(234, 179, 8, 0.3)`,
+            padding: '2rem',
+            borderRadius: '32px',
+            boxShadow: '0 12px 50px -12px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.1)',
+            backdropFilter: 'blur(18px) saturate(180%)'
+          }}
+        >
+          <h2 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            🏆 Achievement Certificate
+          </h2>
+          <motion.img
+            whileHover={{ scale: 1.02 }}
+            src={project.certificate}
+            alt="Third Place Certificate - OPS Hackathon"
+            style={{
+              width: '100%',
+              maxWidth: '600px',
+              height: 'auto',
+              borderRadius: '16px',
+              display: 'block',
+              margin: '0 auto',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
+              transition: 'all .3s'
+            }}
+          />
+        </motion.div>
+      )}
     </motion.section>
   );
 };
