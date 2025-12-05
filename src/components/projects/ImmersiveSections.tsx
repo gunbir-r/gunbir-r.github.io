@@ -5,6 +5,16 @@ import { useNavigate } from 'react-router-dom';
 
 const projectData = [
   {
+    id: 'ops-hackathon',
+    title: 'Cost-of-Living Insights Dashboard',
+    tagline: 'Cost-of-Living Data Processing & Visualization',
+    blurb: 'Participated in the 2025 OPS Hackathon, developing innovative data-based solution in Microsoft Fabric to help analyze and address cost-of-living challenges. Achieved third place in the Data Innovation category, judged by a team of OPS and Microsoft experts.',
+    color: '#06b6d4',
+    icon: '📈',
+    year: 2025,
+    role: 'Data Scientist'
+  },
+  {
     id: 'chronos-edge',
     title: 'Chronos Edge',
     tagline: 'Portfolio Visualization & Financial Risk Monitoring Platform',
@@ -15,34 +25,24 @@ const projectData = [
     role: 'Full-Stack Developer'
   },
   {
-    id: 'ops-hackathon',
-    title: 'Cost-of-Living Insights Hub',
-    tagline: 'Cost-of-Living Data Analysis',
-    blurb: 'Participated in the 2025 OPS Hackathon, developing innovative data-based solution in Microsoft Fabric to help analyze and address cost-of-living challenges. Judged by a team of OPS and Microsoft experts.',
-    color: '#06b6d4',
-    icon: '📈',
-    year: 2025,
-    role: 'Data Science'
+    id: 'sokoban-led',
+    title: 'LED Sokoban',
+    tagline: 'Low-level Puzzle Engineering',
+    blurb: 'RISC-V assembly meets tactile logic. Simulated hardware I/O, D-Pad control, and a PRNG for procedural puzzle generation.',
+    color: '#ec4899',
+    icon: '🎮',
+    year: 2024,
+    role: 'Systems Programmer'
   },
   {
     id: 'burger-frenzy',
     title: 'Burger Frenzy Simulator',
     tagline: 'Accessible Game Design',
-    blurb: 'A JavaFX-powered game built with accessibility at its core—playable by everyone, designed with inclusive principles from day one.',
+    blurb: 'A JavaFX-powered game built with accessibility at its core. Playable by everyone, designed with inclusive principles from day one.',
     color: '#8b5cf6',
     icon: '🍔',
-    year: 2024,
+    year: 2023,
     role: 'Game Developer'
-  },
-  {
-    id: 'sokoban-led',
-    title: 'LED Sokoban',
-    tagline: 'Low-level Puzzle Engineering',
-    blurb: 'RISC-V assembly meets tactile logic—simulated hardware I/O, D-Pad control, and a PRNG for procedural puzzle generation.',
-    color: '#ec4899',
-    icon: '🎮',
-    year: 2024,
-    role: 'Systems Programmer'
   }
 ];
 

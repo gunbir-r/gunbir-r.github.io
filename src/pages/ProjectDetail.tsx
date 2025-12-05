@@ -16,7 +16,7 @@ const projectDetails: Record<string, any> = {
     githubUrl: null
   },
   'ops-hackathon': {
-    title: 'Cost-of-Living Insight Dashboard',
+    title: 'Cost-of-Living Insights Dashboard',
     tagline: 'Data Analysis using Microsoft Fabric',
     hero: '📈',
     description: 'An innovative Power BI dashboard developed during the 2025 OPS Hackathon to analyze and address cost-of-living challenges using Microsoft Fabric. Used Jupyter Notebooks and Apache Spark for data processing and Power BI for data visualization.',
@@ -43,7 +43,7 @@ const projectDetails: Record<string, any> = {
     tagline: 'Low-Level Puzzle Engineering',
     hero: '🎮',
     description: 'A Sokoban-based puzzle game developed in RISC-V assembly with simulated hardware I/O.',
-    features: ['D-Pad & LED Integration', 'Pseudo-Random Generation', 'Comprehensive Docs', 'Multiplayer Support'],
+    features: ['D-Pad & LED Integration', 'Pseudo-Random Generation', 'Comprehensive Documentation'],
     tech: ['RISC-V Assembly', 'Linux', 'Hardware Simulation'],
     impact: 'Mastered low-level programming and hardware abstractions in a simulated environment.',
     media: 'https://www.youtube.com/embed/HBU1ECjZwcE?si=8H7iM3XgiE6b3WiH',
