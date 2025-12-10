@@ -24,7 +24,8 @@ const projectDetails: Record<string, any> = {
     tech: ['Microsoft Fabric', 'Power BI', 'Python', 'Jupyter Notebooks', 'Apache Spark'],
     impact: 'Developed a data-driven solution judged by OPS and Microsoft experts, achieving third place in the Data Innovation category. Enhanced skills in data processing and visualization.',
     media: "https://www.youtube.com/embed/lVERy2Mm60w?si=lU-UJFm1mPB2n5hp",
-    certificate: '/ops-hackathon-certificate.jpeg',
+    certificate: '/ops-hackathon-third.jpeg',
+    teamPhoto: '/ops-hackathon-team.jpeg',
     githubUrl: null
   },
   'burger-frenzy': {
@@ -365,6 +366,41 @@ const ProjectDetail: React.FC = () => {
             whileHover={{ scale: 1.02 }}
             src={project.certificate}
             alt="Third Place Certificate - OPS Hackathon"
+            style={{
+              width: '100%',
+              maxWidth: '600px',
+              height: 'auto',
+              borderRadius: '16px',
+              display: 'block',
+              margin: '0 auto',
+              boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
+              transition: 'all .3s'
+            }}
+          />
+        </motion.div>
+      )}
+
+      {/* Team Photo Section */}
+      {project.teamPhoto && (
+        <motion.div
+          variants={itemVariants}
+          style={{
+            marginTop: '2rem',
+            background: `linear-gradient(135deg, rgba(234, 179, 8, 0.12), rgba(251, 191, 36, 0.08))`,
+            border: `2px solid rgba(234, 179, 8, 0.3)`,
+            padding: '2rem',
+            borderRadius: '32px',
+            boxShadow: '0 12px 50px -12px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.1)',
+            backdropFilter: 'blur(18px) saturate(180%)'
+          }}
+        >
+          <h2 style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            Team Photo
+          </h2>
+          <motion.img
+            whileHover={{ scale: 1.02 }}
+            src={project.teamPhoto}
+            alt="Team Photo for OPS Hackathon"
             style={{
               width: '100%',
               maxWidth: '600px',
