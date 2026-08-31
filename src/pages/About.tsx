@@ -90,7 +90,7 @@ const About: React.FC = () => {
           I'm a Computer Science student at the University of Toronto with a passion for building software that makes a real difference. Starting with Python in tenth grade, I've grown to love the intersection of thoughtful design and clean engineering.
         </p>
         <p style={{ margin: 0, color: theme.colors.textSecondary, lineHeight: 1.75, fontSize: '1rem' }}>
-          Whether it's mobile apps, web platforms, or backend systems, I believe the best solutions emerge from collaboration, curiosity, and a genuine care for the people using what you build.
+          I believe great software lives at the intersection of strong engineering and user empathy, building tools that are as intuitive to use as they are efficient under the hood.
         </p>
       </motion.div>
 

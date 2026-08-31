@@ -90,7 +90,18 @@ const Contact: React.FC = () => {
             maxWidth: '52ch',
           }}
         >
-          Whether you want to discuss a project, collaborate, or just say hi — I'd love to hear from you.
+          Whether you want to discuss a project, collaborate, or just say hi,
+        </p>
+        <p
+          style={{
+            fontSize: '1.05rem',
+            color: theme.colors.textSecondary,
+            margin: 0,
+            lineHeight: 1.65,
+            maxWidth: '52ch',
+          }}
+        >
+          I'd love to hear from you.
         </p>
       </motion.div>
 
