@@ -5,185 +5,186 @@ import { usePortfolioTheme } from '../components/theme/ThemeContext';
 const About: React.FC = () => {
   const { theme } = usePortfolioTheme();
 
+  const isLight = theme.mode === 'light';
+
   const traits = [
     { emoji: '🧠', title: 'Curiosity-Driven', desc: 'Always working to find ways to creatively solve problems.' },
     { emoji: '🤝', title: 'Collaborative Builder', desc: 'Thrive in dynamic teams, bringing ideas together to create impactful solutions.' },
     { emoji: '🚀', title: 'Exploring New Tech', desc: 'From Swift to React, Python to TypeScript, I am always excited to learn new things!' },
-    { emoji: '❤️', title: 'Human-Centered', desc: 'Every design choice that I make puts the user experience first.' }
+    { emoji: '❤️', title: 'Human-Centered', desc: 'Every design choice that I make puts the user experience first.' },
+  ];
+
+  const techs = [
+    { name: 'React', icon: '⚛️' },
+    { name: 'TypeScript', icon: '🔷' },
+    { name: 'Python', icon: '🐍' },
+    { name: 'Swift', icon: '🍎' },
+    { name: 'C/C++', icon: '✨' },
+    { name: 'Java', icon: '☕️' },
   ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.08 }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.06 } },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.92 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      transition: { duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }
-    }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 0.61, 0.36, 1] } },
+  };
+
+  const cardStyle: React.CSSProperties = {
+    background: theme.gradients.panel,
+    border: `1px solid ${theme.colors.border}`,
+    borderRadius: '16px',
+    backdropFilter: 'blur(8px)',
+    transition: 'all 0.25s ease',
   };
 
   return (
     <motion.section
       initial="hidden"
       animate="visible"
-      exit={{ opacity: 0, y: -40 }}
+      exit={{ opacity: 0, y: -20 }}
       variants={containerVariants}
-      style={{
-        maxWidth: 1100,
-        margin: '0 auto',
-        padding: '3rem 1.75rem 6rem',
-        position: 'relative'
-      }}
+      style={{ maxWidth: 900, margin: '0 auto', padding: '3.5rem 1.5rem 6rem' }}
     >
-      {/* Gradient accent lines */}
+      {/* Page header */}
+      <motion.div variants={itemVariants} style={{ marginBottom: '2.5rem' }}>
+        <div
+          style={{
+            display: 'inline-block',
+            padding: '0.25rem 0.75rem',
+            borderRadius: '999px',
+            background: isLight ? 'rgba(37,99,235,0.08)' : 'rgba(37,99,235,0.18)',
+            color: theme.colors.accentText,
+            fontSize: '0.8rem',
+            fontWeight: 600,
+            marginBottom: '1rem',
+            letterSpacing: '0.04em',
+            textTransform: 'uppercase' as const,
+          }}
+        >
+          About
+        </div>
+        <h1
+          style={{
+            fontSize: 'clamp(2rem, 5vw, 3rem)',
+            margin: 0,
+            color: theme.colors.textPrimary,
+            fontWeight: 800,
+            letterSpacing: '-0.03em',
+            lineHeight: 1.1,
+          }}
+        >
+          A little about me
+        </h1>
+      </motion.div>
+
+      {/* Bio */}
       <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        style={{
-          position: 'absolute',
-          top: '4rem',
-          left: 0,
-          width: 80,
-          height: 4,
-          background: theme.gradients.accent,
-          borderRadius: '999px',
-          transformOrigin: 'left'
-        }}
-      />
-
-      <motion.h1 
         variants={itemVariants}
-        style={{
-          fontSize: 'clamp(2.25rem, 5.5vw, 3.5rem)',
-          margin: '0 0 3rem',
-          background: theme.gradients.accent,
-          WebkitBackgroundClip: 'text',
-          color: 'transparent',
-          fontWeight: 700
-        }}>
-        About Me
-      </motion.h1>
-
-      {/* Bio section */}
-      <motion.div 
-        variants={itemVariants}
-        style={{
-          background: theme.gradients.panel,
-          border: `2px solid ${theme.colors.border}`,
-          padding: '2.5rem 2rem',
-          borderRadius: '32px',
-          boxShadow: '0 12px 50px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
-          backdropFilter: 'blur(18px) saturate(180%)',
-          marginBottom: '3.5rem',
-          lineHeight: 1.7,
-          fontSize: 'clamp(0.95rem, 1.3vw, 1.05rem)'
-        }}>
-        <p style={{ margin: '0 0 1rem', color: theme.colors.textSecondary }}>
+        style={{ ...cardStyle, padding: '2rem', marginBottom: '2rem' }}
+      >
+        <p style={{ margin: '0 0 1rem', color: theme.colors.textPrimary, lineHeight: 1.75, fontSize: '1rem' }}>
           I'm a Computer Science student at the University of Toronto with a passion for building software that makes a real difference. Starting with Python in tenth grade, I've grown to love the intersection of thoughtful design and clean engineering.
         </p>
-        <p style={{ margin: 0, color: theme.colors.textSecondary }}>
+        <p style={{ margin: 0, color: theme.colors.textSecondary, lineHeight: 1.75, fontSize: '1rem' }}>
           Whether it's mobile apps, web platforms, or backend systems, I believe the best solutions emerge from collaboration, curiosity, and a genuine care for the people using what you build.
         </p>
       </motion.div>
 
-      {/* Personality trait cards */}
-      <div style={{
-        display: 'grid',
-        gap: '1.5rem',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-        marginBottom: '4rem'
-      }}>
-        {traits.map((trait, idx) => (
-          <motion.div
-            key={trait.title}
-            variants={itemVariants}
-            whileHover={{ y: -8, boxShadow: `0 16px 50px -8px rgba(6, 182, 212, 0.3)` }}
-            style={{
-              background: theme.gradients.panel,
-              border: `2px solid ${theme.colors.border}`,
-              padding: '1.75rem 1.5rem',
-              borderRadius: '28px',
-              boxShadow: '0 8px 32px -8px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.1)',
-              backdropFilter: 'blur(16px) saturate(170%)',
-              transition: 'all .35s cubic-bezier(.22,.61,.36,1)',
-              cursor: 'pointer',
-              position: 'relative',
-              overflow: 'hidden'
-            }}
-          >
-            {/* Gradient overlay on hover */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 0.1 }}
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background: theme.gradients.accent,
-                pointerEvents: 'none'
-              }}
-            />
-            <div style={{ fontSize: '2.2rem', marginBottom: '0.75rem' }}>{trait.emoji}</div>
-            <h3 style={{ margin: '0 0 0.65rem', fontSize: '1.15rem', fontWeight: 700, color: theme.colors.textPrimary }}>
-              {trait.title}
-            </h3>
-            <p style={{ margin: 0, fontSize: '0.9rem', lineHeight: 1.5, color: theme.colors.textSecondary }}>
-              {trait.desc}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Tech stack section */}
-      <motion.div variants={itemVariants}>
-        <h2 style={{
-          fontSize: '1.35rem',
-          fontWeight: 700,
-          marginBottom: '1.5rem',
-          background: theme.gradients.accent,
-          WebkitBackgroundClip: 'text',
-          color: 'transparent'
-        }}>
-          Tech I Love
+      {/* Trait cards */}
+      <motion.div variants={itemVariants} style={{ marginBottom: '2.5rem' }}>
+        <h2
+          style={{
+            fontSize: '1.1rem',
+            fontWeight: 700,
+            color: theme.colors.textPrimary,
+            margin: '0 0 1.25rem',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          What drives me
         </h2>
-        <div style={{
-          display: 'grid',
-          gap: '1rem',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))'
-        }}>
-          {[
-            { name: 'React', icon: '⚛️' },
-            { name: 'TypeScript', icon: '🔷' },
-            { name: 'Python', icon: '🐍' },
-            { name: 'Swift', icon: '🍎' },
-            { name: 'C/C++', icon: '✨' },
-            { name: 'Java', icon: '☕️' },
-          ].map(tech => (
+        <div
+          style={{
+            display: 'grid',
+            gap: '1rem',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+          }}
+        >
+          {traits.map(trait => (
             <motion.div
-              key={tech.name}
-              whileHover={{ scale: 1.08, rotate: 2 }}
-              whileTap={{ scale: 0.94 }}
+              key={trait.title}
+              whileHover={{ y: -4, boxShadow: isLight ? '0 12px 32px -8px rgba(0,0,0,0.12)' : '0 12px 32px -8px rgba(0,0,0,0.5)' }}
               style={{
-                padding: '1rem 0.75rem',
-                borderRadius: '16px',
-                background: `linear-gradient(135deg, ${theme.colors.bgElevated}, rgba(255,255,255,0.04))`,
-                border: `1.5px solid ${theme.colors.border}`,
-                textAlign: 'center',
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'all .3s'
+                ...cardStyle,
+                padding: '1.5rem',
+                cursor: 'default',
               }}
             >
-              <div style={{ fontSize: '1.8rem', marginBottom: '0.4rem' }}>{tech.icon}</div>
+              <div style={{ fontSize: '1.75rem', marginBottom: '0.65rem' }}>{trait.emoji}</div>
+              <h3
+                style={{
+                  margin: '0 0 0.5rem',
+                  fontSize: '0.95rem',
+                  fontWeight: 700,
+                  color: theme.colors.textPrimary,
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                {trait.title}
+              </h3>
+              <p style={{ margin: 0, fontSize: '0.875rem', lineHeight: 1.6, color: theme.colors.textSecondary }}>
+                {trait.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Tech stack */}
+      <motion.div variants={itemVariants}>
+        <h2
+          style={{
+            fontSize: '1.1rem',
+            fontWeight: 700,
+            color: theme.colors.textPrimary,
+            margin: '0 0 1.25rem',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Tech I love
+        </h2>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap' as const,
+            gap: '0.75rem',
+          }}
+        >
+          {techs.map(tech => (
+            <motion.div
+              key={tech.name}
+              whileHover={{ scale: 1.06, y: -2 }}
+              whileTap={{ scale: 0.96 }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.6rem 1rem',
+                borderRadius: '10px',
+                background: theme.colors.surface,
+                border: `1px solid ${theme.colors.border}`,
+                fontSize: '0.875rem',
+                fontWeight: 600,
+                color: theme.colors.textPrimary,
+                cursor: 'default',
+                transition: 'all 0.2s',
+              }}
+            >
+              <span>{tech.icon}</span>
               {tech.name}
             </motion.div>
           ))}

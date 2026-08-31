@@ -1,60 +1,65 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolioTheme } from '../theme/ThemeContext';
-import { css } from '@emotion/react';
 
-const toggleCss = css`
-  cursor: pointer;
-  padding: 0.5rem 1.1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  border-radius: 999px;
-  border: 2px solid rgba(255, 0, 127, 0.4);
-  background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(200,100,255,0.15));
-  backdrop-filter: blur(20px) saturate(200%);
-  -webkit-backdrop-filter: blur(20px) saturate(200%);
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: all .4s cubic-bezier(.22,.61,.36,1);
-  box-shadow: 
-    0 8px 32px rgba(255, 0, 127, 0.3),
-    inset 0 1px 1px rgba(255,255,255,0.3),
-    0 0 20px -5px rgba(0, 217, 255, 0.4);
-  position: relative;
-  overflow: hidden;
+const SunIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="5" />
+    <line x1="12" y1="1" x2="12" y2="3" />
+    <line x1="12" y1="21" x2="12" y2="23" />
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+    <line x1="1" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="12" x2="23" y2="12" />
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+  </svg>
+);
 
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(45deg, rgba(0, 217, 255, 0.1), rgba(255, 0, 127, 0.1));
-    pointer-events: none;
-  }
-
-  &:hover { 
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 
-      0 12px 40px rgba(255, 0, 127, 0.4),
-      inset 0 1px 1px rgba(255,255,255,0.4),
-      0 0 30px -2px rgba(0, 217, 255, 0.6);
-    border-color: rgba(255, 0, 127, 0.6);
-  }
-  
-  &:active { transform: translateY(-1px) scale(0.98); }
-  
-  &:focus-visible { 
-    outline: 2px solid #00d9ff;
-    outline-offset: 4px;
-  }
-`;
+const MoonIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
 
 const ThemeToggle: React.FC = () => {
-  const { theme } = usePortfolioTheme();
+  const { theme, toggleMode } = usePortfolioTheme();
+  const isLight = theme.mode === 'light';
+
   return (
-    <div aria-label="Dark mode indicator" css={toggleCss} style={{ cursor: 'default', opacity: 0.8 }}>
-      {theme.mode === 'dark' ? '🌙 Dark' : '🌙 Dark'}
-    </div>
+    <motion.button
+      onClick={toggleMode}
+      aria-label={isLight ? 'Switch to dark mode' : 'Switch to light mode'}
+      whileHover={{ scale: 1.08 }}
+      whileTap={{ scale: 0.92 }}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '38px',
+        height: '38px',
+        borderRadius: '999px',
+        border: `1.5px solid ${theme.colors.border}`,
+        background: theme.colors.surface,
+        color: theme.colors.textPrimary,
+        cursor: 'pointer',
+        transition: 'background 0.2s, border-color 0.2s, color 0.2s',
+        flexShrink: 0,
+      }}
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={theme.mode}
+          initial={{ opacity: 0, rotate: -30, scale: 0.7 }}
+          animate={{ opacity: 1, rotate: 0, scale: 1 }}
+          exit={{ opacity: 0, rotate: 30, scale: 0.7 }}
+          transition={{ duration: 0.2 }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        >
+          {isLight ? <MoonIcon /> : <SunIcon />}
+        </motion.span>
+      </AnimatePresence>
+    </motion.button>
   );
 };
 

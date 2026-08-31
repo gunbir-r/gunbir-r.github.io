@@ -1,91 +1,150 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useCursorGlow } from '../../hooks/useCursorGlow';
+import { usePortfolioTheme } from '../../components/theme/ThemeContext';
 
 interface InteractivePolaroidProps {
   src: string;
   alt: string;
   rotation?: number;
+  caption?: string;
+  tapeColor?: string;
+  tapeAngle?: number;
+  imageWidth?: number; // controls the image size; default 260
 }
+
+const TAPE_COLORS = ['#fbbf24', '#34d399', '#f87171', '#a78bfa', '#60a5fa'];
 
 export const InteractivePolaroid: React.FC<InteractivePolaroidProps> = ({
   src,
   alt,
   rotation = -8,
+  caption,
+  tapeColor,
+  tapeAngle = -3,
+  imageWidth = 260,
 }) => {
-  const { cursor, isVisible } = useCursorGlow();
+  const { theme } = usePortfolioTheme();
   const polaroidRef = useRef<HTMLDivElement>(null);
   const [hovering, setHovering] = useState(false);
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
-  const calculateRotation = () => {
-    if (!hovering || !isVisible || !polaroidRef.current) return rotation;
+  const resolvedTapeColor = tapeColor ?? TAPE_COLORS[Math.abs(rotation) % TAPE_COLORS.length];
+  const isLight = theme.mode === 'light';
 
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!polaroidRef.current) return;
     const rect = polaroidRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) / (rect.width / 2);
+    const dy = (e.clientY - cy) / (rect.height / 2);
+    setTilt({ x: dy * -8, y: dx * 8 });
+  };
 
-    const dx = cursor.x - centerX;
-    const dy = cursor.y - centerY;
-
-    // Constrain rotation between -15 and 15 degrees
-    const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
-    const constrainedRotation = Math.max(-15, Math.min(15, angle / 20));
-
-    return rotation + constrainedRotation;
+  const handleMouseLeave = () => {
+    setHovering(false);
+    setTilt({ x: 0, y: 0 });
   };
 
   return (
     <motion.div
       ref={polaroidRef}
       onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
+      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
       animate={{
-        rotateZ: calculateRotation(),
-        y: hovering ? -20 : 0,
+        rotateZ: hovering ? rotation * 0.25 : rotation,
+        y: hovering ? -14 : 0,
+        rotateX: tilt.x,
+        rotateY: tilt.y,
       }}
-      transition={{
-        type: 'spring',
-        stiffness: 150,
-        damping: 15,
-      }}
-      style={{
-        perspective: 1000,
-        cursor: 'grab',
-      }}
+      transition={{ type: 'spring', stiffness: 220, damping: 22 }}
+      style={{ perspective: 800, cursor: 'grab', transformStyle: 'preserve-3d', display: 'inline-block' }}
     >
+      {/* Washi tape strip */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '-13px',
+          left: '50%',
+          transform: `translateX(-50%) rotate(${tapeAngle}deg)`,
+          width: `${Math.max(54, Math.min(84, Math.round(imageWidth * 0.32)))}px`,
+          height: '22px',
+          background: resolvedTapeColor,
+          opacity: 0.85,
+          borderRadius: '2px',
+          zIndex: 3,
+          boxShadow: '0 2px 5px rgba(0,0,0,0.12)',
+          backgroundImage: `repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 4px,
+            rgba(255,255,255,0.22) 4px,
+            rgba(255,255,255,0.22) 5px
+          )`,
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Polaroid frame */}
       <motion.div
         style={{
-          background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%)',
-          borderRadius: '8px',
-          padding: '12px',
+          background: isLight ? '#ffffff' : '#faf8f5',
+          borderRadius: '5px',
+          padding: '9px 9px 28px',
           boxShadow: hovering
-            ? '0 30px 60px -10px rgba(0, 245, 255, 0.4), 0 0 40px rgba(255, 0, 128, 0.3)'
-            : '0 20px 40px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+            ? '0 30px 60px -12px rgba(0,0,0,0.32), 0 10px 24px -6px rgba(0,0,0,0.15)'
+            : '0 14px 34px -8px rgba(0,0,0,0.2), 0 4px 12px -2px rgba(0,0,0,0.08)',
           transition: 'box-shadow 0.3s ease',
+          position: 'relative',
+          zIndex: 1,
+          border: isLight ? '1px solid rgba(0,0,0,0.06)' : '1px solid rgba(255,255,255,0.08)',
         }}
-        whileHover={{
-          scale: 1.05,
-        }}
+        whileHover={{ scale: 1.03 }}
+        transition={{ type: 'spring', stiffness: 220, damping: 20 }}
       >
-        <img
-          src={src}
-          alt={alt}
-          style={{
-            width: '100%',
-            height: 'auto',
-            borderRadius: '4px',
-            display: 'block',
-            maxWidth: '280px',
-          }}
-        />
+        <div style={{
+          width: `${imageWidth}px`,
+          overflow: 'hidden',
+          borderRadius: '2px',
+          background: '#e2e8f0',
+          boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.08)'
+        }}>
+          <img
+            src={src}
+            alt={alt}
+            style={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              objectFit: 'cover',
+            }}
+          />
+        </div>
+        {/* Caption area */}
         <div
           style={{
-            marginTop: '12px',
-            height: '30px',
-            background: 'linear-gradient(to right, rgba(0, 245, 255, 0.1), rgba(255, 0, 128, 0.1), rgba(191, 64, 191, 0.1))',
-            borderRadius: '3px',
+            marginTop: '4px',
+            height: '24px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
-        />
+        >
+          {caption && (
+            <span
+              style={{
+                fontFamily: "'Caveat', cursive, sans-serif",
+                fontSize: `${Math.max(0.85, Math.min(1.15, imageWidth * 0.0048))}rem`,
+                color: '#475569',
+                fontWeight: 600,
+                letterSpacing: '0.01em',
+              }}
+            >
+              {caption}
+            </span>
+          )}
+        </div>
       </motion.div>
     </motion.div>
   );

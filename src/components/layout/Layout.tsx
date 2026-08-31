@@ -1,206 +1,247 @@
 import React, { useState } from 'react';
 import { usePortfolioTheme } from '../theme/ThemeContext';
-import { Link } from 'react-router-dom';
-import { css } from '@emotion/react';
-import { useCursorGlow } from '../../hooks/useCursorGlow';
-
-const navStyles = (accent: string) => css`
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 5.5rem;
-  padding: 0 2rem;
-  backdrop-filter: blur(16px) saturate(140%);
-  background: linear-gradient(90deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  z-index: 50;
-  a { color: #fff; text-decoration: none; font-weight: 500; position: relative; }
-  a:after { content:''; position:absolute; left:0; bottom:-4px; height:2px; width:0; background:${accent}; transition:width .35s cubic-bezier(.4,0,.2,1); border-radius:2px; }
-  a:hover:after, a:focus-visible:after { width:100%; }
-`;
-
-const desktopLinksStyles = css`
-  display: flex;
-  gap: 1.75rem;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const hamburgerStyles = css`
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  padding: 0;
-  z-index: 60;
-
-  span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background: #fff;
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-
-  &.open span:nth-of-type(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-  &.open span:nth-of-type(2) {
-    opacity: 0;
-  }
-  &.open span:nth-of-type(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-  }
-`;
-
-const mobileMenuStyles = (isOpen: boolean) => css`
-  display: none;
-
-  @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    top: 5.5rem;
-    left: 0;
-    right: 0;
-    background: rgba(10, 14, 39, 0.65);
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    padding: 1.5rem 2rem;
-    gap: 1.25rem;
-    transform: ${isOpen ? 'translateY(0)' : 'translateY(-120%)'};
-    opacity: ${isOpen ? 1 : 0};
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    z-index: 49;
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1.1rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-  }
-`;
-
-const gradientBackground = (bg: string, cursorX: number, cursorY: number, isVisible: boolean) => css`
-  min-height: 100dvh;
-  background: ${bg};
-  background-attachment: fixed;
-  overflow-x: hidden;
-  position: relative;
-  
-  /* Eye-catching animated gradient accent elements */
-  &::before {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(ellipse at 30% 40%, rgba(217, 70, 239, 0.15) 0%, transparent 50%);
-    pointer-events: none;
-    animation: float 35s ease-in-out infinite;
-    z-index: 0;
-    filter: blur(40px);
-  }
-
-  &::after {
-    content: '';
-    position: fixed;
-    bottom: -30%;
-    right: -30%;
-    width: 150%;
-    height: 150%;
-    background: radial-gradient(ellipse at 70% 60%, rgba(0, 217, 255, 0.12) 0%, transparent 50%);
-    pointer-events: none;
-    animation: float 40s ease-in-out infinite reverse;
-    z-index: 0;
-    filter: blur(40px);
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(20px, -25px) scale(1.05); }
-    50% { transform: translate(-25px, 20px) scale(0.95); }
-    75% { transform: translate(15px, 15px) scale(1.02); }
-  }
-
-  /* Cursor-reactive glow effect */
-  ${isVisible ? `
-    &::backdrop {
-      pointer-events: none;
-    }
-  ` : ''}
-`;
-
-const contentWrapper = css`
-  padding-top: 5.5rem;
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-`;
+import { Link, useLocation } from 'react-router-dom';
+import ThemeToggle from './ThemeToggle';
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { theme } = usePortfolioTheme();
-  const { cursor, isVisible } = useCursorGlow();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+  const isLight = theme.mode === 'light';
+
+  const navLinks = [
+    { to: '/', label: 'Home' },
+    { to: '/about', label: 'About' },
+    { to: '/projects', label: 'Projects' },
+    { to: '/contact', label: 'Contact' },
+  ];
+
+  const isActive = (to: string) => location.pathname === to;
 
   return (
-    <div css={gradientBackground(theme.gradients.background, cursor.x, cursor.y, isVisible)}>
-      <nav css={navStyles(theme.gradients.accent)} aria-label="Primary">
-        <Link to="/" style={{ fontWeight: 700, fontSize: '1.25rem', background: 'linear-gradient(135deg, #06b6d4 0%, #ec4899 100%)', WebkitBackgroundClip: 'text', color: 'transparent' }} onClick={closeMobileMenu}>Gunbir Reehal</Link>
-        
-        {/* Desktop Links */}
-        <div css={desktopLinksStyles}>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/projects">Projects</Link>
-          <Link to="/contact">Contact</Link>
+    <div
+      style={{
+        minHeight: '100dvh',
+        background: theme.gradients.background,
+        transition: 'background 0.3s ease, color 0.3s ease',
+        overflowX: 'hidden',
+      }}
+    >
+      {/* ── Nav ── */}
+      <nav
+        aria-label="Primary"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 2rem',
+          backdropFilter: 'blur(16px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+          background: theme.colors.navBg,
+          borderBottom: `1px solid ${theme.colors.border}`,
+          zIndex: 50,
+          transition: 'background 0.3s ease, border-color 0.3s ease',
+        }}
+      >
+        {/* Logo */}
+        <Link
+          to="/"
+          onClick={closeMobileMenu}
+          style={{
+            fontWeight: 700,
+            fontSize: '1.1rem',
+            color: theme.colors.textPrimary,
+            textDecoration: 'none',
+            letterSpacing: '-0.02em',
+            transition: 'color 0.2s',
+          }}
+        >
+          Gunbir Reehal
+        </Link>
+
+        {/* Desktop links */}
+        <div
+          style={{
+            display: 'flex',
+            gap: '0.25rem',
+            alignItems: 'center',
+          }}
+          className="desktop-nav"
+        >
+          {navLinks.map(link => (
+            <Link
+              key={link.to}
+              to={link.to}
+              style={{
+                padding: '0.4rem 0.85rem',
+                borderRadius: '8px',
+                fontSize: '0.9rem',
+                fontWeight: isActive(link.to) ? 600 : 500,
+                color: isActive(link.to) ? theme.colors.accentText : theme.colors.textSecondary,
+                background: isActive(link.to)
+                  ? isLight ? 'rgba(37,99,235,0.08)' : 'rgba(37,99,235,0.15)'
+                  : 'transparent',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={e => {
+                if (!isActive(link.to)) {
+                  (e.currentTarget as HTMLElement).style.color = theme.colors.textPrimary;
+                  (e.currentTarget as HTMLElement).style.background = isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.06)';
+                }
+              }}
+              onMouseLeave={e => {
+                if (!isActive(link.to)) {
+                  (e.currentTarget as HTMLElement).style.color = theme.colors.textSecondary;
+                  (e.currentTarget as HTMLElement).style.background = 'transparent';
+                }
+              }}
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          <div style={{ width: '1px', height: '20px', background: theme.colors.border, margin: '0 0.5rem' }} />
+          <ThemeToggle />
         </div>
 
-        {/* Hamburger Button */}
-        <button
-          css={hamburgerStyles}
-          className={mobileMenuOpen ? 'open' : ''}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle navigation menu"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        {/* Mobile: toggle + hamburger */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }} className="mobile-nav">
+          <ThemeToggle />
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '5px',
+              width: '40px',
+              height: '40px',
+              cursor: 'pointer',
+              background: isLight ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.06)',
+              borderRadius: '8px',
+              border: 'none',
+              padding: 0,
+              zIndex: 60,
+              WebkitTapHighlightColor: 'transparent',
+            }}
+          >
+            <span style={{
+              display: 'block',
+              width: '20px',
+              height: '2px',
+              background: theme.colors.textPrimary,
+              borderRadius: '2px',
+              transition: 'all 0.3s ease',
+              transform: mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
+            }} />
+            <span style={{
+              display: 'block',
+              width: '20px',
+              height: '2px',
+              background: theme.colors.textPrimary,
+              borderRadius: '2px',
+              transition: 'all 0.3s ease',
+              opacity: mobileMenuOpen ? 0 : 1,
+            }} />
+            <span style={{
+              display: 'block',
+              width: '20px',
+              height: '2px',
+              background: theme.colors.textPrimary,
+              borderRadius: '2px',
+              transition: 'all 0.3s ease',
+              transform: mobileMenuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
+            }} />
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile Menu */}
-      <div css={mobileMenuStyles(mobileMenuOpen)}>
-        <Link to="/" onClick={closeMobileMenu}>Home</Link>
-        <Link to="/about" onClick={closeMobileMenu}>About</Link>
-        <Link to="/projects" onClick={closeMobileMenu}>Projects</Link>
-        <Link to="/contact" onClick={closeMobileMenu}>Contact</Link>
+      {/* Mobile drawer backdrop overlay */}
+      {mobileMenuOpen && (
+        <div
+          onClick={closeMobileMenu}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.35)',
+            backdropFilter: 'blur(4px)',
+            WebkitBackdropFilter: 'blur(4px)',
+            zIndex: 48,
+          }}
+        />
+      )}
+
+      {/* Mobile drawer */}
+      <div
+        style={{
+          position: 'fixed',
+          top: '4rem',
+          left: 0,
+          right: 0,
+          background: theme.colors.navBg,
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          padding: '0.75rem 1.5rem 1.5rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.25rem',
+          borderBottom: `1px solid ${theme.colors.border}`,
+          transform: mobileMenuOpen ? 'translateY(0)' : 'translateY(-110%)',
+          opacity: mobileMenuOpen ? 1 : 0,
+          transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease',
+          zIndex: 49,
+          boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
+        }}
+        className="mobile-menu"
+      >
+        {navLinks.map(link => (
+          <Link
+            key={link.to}
+            to={link.to}
+            onClick={closeMobileMenu}
+            style={{
+              padding: '0.85rem 0.5rem',
+              fontSize: '1.05rem',
+              fontWeight: isActive(link.to) ? 700 : 500,
+              color: isActive(link.to) ? theme.colors.accentText : theme.colors.textPrimary,
+              textDecoration: 'none',
+              borderBottom: `1px solid ${theme.colors.border}`,
+              transition: 'color 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <span>{link.label}</span>
+            {isActive(link.to) && <span style={{ fontSize: '0.9rem' }}>●</span>}
+          </Link>
+        ))}
       </div>
 
-      <main css={contentWrapper}>{children}</main>
+      <style>{`
+        @media (max-width: 768px) {
+          .desktop-nav { display: none !important; }
+          nav { padding: 0 1.25rem !important; }
+        }
+        @media (min-width: 769px) {
+          .mobile-nav { display: none !important; }
+          .mobile-menu { display: none !important; }
+        }
+      `}</style>
+
+      <main style={{ paddingTop: '4rem', minHeight: '100vh' }}>
+        {children}
+      </main>
     </div>
   );
 };
