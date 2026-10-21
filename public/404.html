@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Redirecting...</title>
     <script>
       // GitHub Pages SPA redirect
@@ -9,10 +10,10 @@
       var path = '/' + pathSegments.join('/');
       
       // Store the original path for the app to handle
-      sessionStorage.redirect = path;
+      sessionStorage.setItem('redirect', path);
       
       // Redirect to index.html
-      window.location.href = '/index.html';
+      window.location.replace('/index.html');
     </script>
   </head>
   <body>

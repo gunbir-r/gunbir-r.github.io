@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { usePortfolioTheme } from '../components/theme/ThemeContext';
+import NotFound from './NotFound';
 
 const projectDetails: Record<string, any> = {
   'chronos-edge': {
@@ -81,21 +82,14 @@ const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { theme } = usePortfolioTheme();
-  const project = projectDetails[id || 'chronos-edge'];
+  const targetId = id || 'chronos-edge';
+  const project = Object.prototype.hasOwnProperty.call(projectDetails, targetId)
+    ? projectDetails[targetId]
+    : undefined;
   const isLight = theme.mode === 'light';
 
   if (!project) {
-    return (
-      <motion.div style={{ padding: '4rem 1.5rem', textAlign: 'center', color: theme.colors.textPrimary }}>
-        <h1>Project not found</h1>
-        <button
-          onClick={() => navigate('/projects')}
-          style={{ marginTop: '1rem', padding: '0.75rem 1.5rem', cursor: 'pointer' }}
-        >
-          Back to Projects
-        </button>
-      </motion.div>
-    );
+    return <NotFound />;
   }
 
   const containerVariants = {
@@ -243,6 +237,7 @@ const ProjectDetail: React.FC = () => {
                   src={project.media}
                   title="Project video demo"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  sandbox="allow-scripts allow-same-origin allow-presentation"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                 />
